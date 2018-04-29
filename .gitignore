@@ -1,0 +1,10 @@
+# Python:
+*.py[cod]
+*.so
+*.egg
+*.egg-info
+dist
+build
+*.DS_Store
+
+data/raw_data/
