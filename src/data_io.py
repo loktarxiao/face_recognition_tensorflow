@@ -47,7 +47,7 @@ if __name__ == '__main__':
     dataset = tf.data.TFRecordDataset(filenames)
     new_dataset = dataset.map(parse_function, num_parallel_calls=8)
     new_dataset = new_dataset.shuffle(buffer_size=10000).repeat(8)
-    new_dataset = new_dataset.map(slice_process)
+    new_dataset = new_dataset.map(slice_process, num_parallel_calls=8)
     new_dataset = new_dataset.batch(4)
     iterator = new_dataset.make_one_shot_iterator()
     next_element = iterator.get_next()
