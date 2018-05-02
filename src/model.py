@@ -7,7 +7,7 @@ Created on Sat Apr 28 11:23:42 2018
 """
 
 import tensorflow as tf
-
+from model_zoo import *
 
 
 
@@ -30,3 +30,10 @@ class MODEL(object):
 
         with tf.variable_scope("control_params"):
             keep_prob = tf.placeholder_with_default(1, shape=(1,), name='keep_prob_ratio')
+            init = tf.global_variables_initializer()
+
+        with tf.variable_scope("feature"):
+            feature1 = alexnet(image1)
+            feature2 = alexnet(image2, reuse=True)
+
+            feature = tf.abs(feature1 - feature2)
